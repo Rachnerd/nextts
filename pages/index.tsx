@@ -1,19 +1,7 @@
 import css from "styled-jsx/css";
-import { ApolloClient } from "apollo-client";
-import { ApolloProvider, Query } from "react-apollo";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import fetch from "node-fetch";
-import { gql } from "graphql";
-
-const client = new ApolloClient({
-  link: createHttpLink({
-    uri: "http://localhost:8080",
-    fetch: fetch as any
-  }),
-  ssrMode: true,
-  cache: new InMemoryCache()
-});
+import gql from "graphql-tag";
+import * as React from "react";
+import { client } from "./_app";
 
 export const button = css`
   button {
@@ -21,29 +9,60 @@ export const button = css`
   }
 `;
 
-function Home() {
-  return (
-    <ApolloProvider client={client}>
-      <Query
-        query={gql`
-          {
-            items(ids: ["1"]) {
-              __typename
-            }
-          }
-        `}
-      >
-        (({}) =>
+export const tst = css.global`
+  body {
+    background-color: red;
+  }
+`;
+
+const { className: buttonLarge, styles } = css.resolve`width: 20em`;
+
+class Home extends React.Component {
+  static async getInitialProps({ req }) {
+    return await client.query({
+      query: gql`
         {
-          <div>
-            <p>Welcome to Next.js!</p>
-            <button>Test</button>
-            <style jsx>{button}</style>
-          </div>
+          items(ids: ["1", "11", "666"]) {
+            __typename
+          }
         }
-      </Query>
-    </ApolloProvider>
-  );
+      `
+    });
+  }
+
+  data;
+
+  constructor(props) {
+    super(props);
+    this.data = props.data;
+  }
+
+  render() {
+    const s = s => console.log(s);
+
+    s`asd`;
+
+    return (
+      <>
+        <div>
+          <p>
+            Welcome to Next.js!{" "}
+            {this.data && this.data.items && this.data.items[0].__typename}
+          </p>
+
+          <button>Test</button>
+          <button className={buttonLarge}>Test</button>
+
+          <style jsx>{button}</style>
+          <style jsx global>
+            {tst}
+          </style>
+          {styles}
+        </div>
+        <p>Foo</p>
+      </>
+    );
+  }
 }
 
 export default Home;
