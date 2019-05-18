@@ -1,0 +1,15 @@
+# codegen.yml
+schema: http://localhost:8080
+overwrite: true
+generates:
+  ./fragmentTypes.json:
+    plugins:
+    - fragment-matcher
+  ./gql.model.ts:
+    plugins:
+    - typescript
+    config:
+      avoidOptionals: true
+      typesPrefix: GQL
+  ./schema.graphql:
+  - schema-ast
