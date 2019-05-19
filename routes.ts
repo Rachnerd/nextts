@@ -6,6 +6,9 @@ const nextRoutes = require("next-routes");
  */
 const routes: Routes = nextRoutes();
 
-const config = routes.add("index", "/").add("search", "/search");
+const config = routes
+  .add("index", "/")
+  .add("search-server-side", "/search/server")
+  .add("search-client-side", "/search/client");
 
 export default config;
