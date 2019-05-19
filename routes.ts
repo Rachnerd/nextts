@@ -1,10 +1,11 @@
-import routes from "next-routes";
+import Routes from "next-routes";
+const nextRoutes = require("next-routes");
 
 /**
  * TS types do not seem to match properly.
  */
-const router: routes = ((routes as any) as () => routes)();
+const routes: Routes = nextRoutes();
 
-const config = router.add("index", "/").add("search", "/search");
+const config = routes.add("index", "/").add("search", "/search");
 
 export default config;
