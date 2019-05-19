@@ -5,9 +5,7 @@ class Home extends React.Component {
     return (
       <div>
         <p>Welcome to Next.js! </p>
-        <a href={"./search-client"}>Let the client search</a>
-        <br />
-        <a href={"./search-server"}>Let the server search</a>
+        <a href={"./search"}>Search</a>
       </div>
     );
   }

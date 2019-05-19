@@ -1,32 +1,32 @@
-import { List } from "../ui-components/List";
 import { UnionType } from "../utils/type.utils";
 import { GQLSearchResult } from "../gql.model";
-import { ListItem } from "../ui-components/ListItem";
 import * as React from "react";
 import css from "styled-jsx/css";
+import { Grid } from "../ui-components/Grid";
+import { GridTile } from "../ui-components/GridTile";
 import { SearchResult } from "./SearchResult";
 
-export const SearchResultList = ({
-  searchResults
-}: {
+const AMOUNT_OF_COLUMNS_IN_ROW = 4;
+
+interface SearchResultGridProps {
   searchResults: GQLSearchResult[];
-}) => (
-  <List className={className}>
+}
+
+export const SearchResultsGrid = ({ searchResults }: SearchResultGridProps) => (
+  <Grid className={className}>
     {searchResults.map((result: UnionType<GQLSearchResult>, index) => (
-      <ListItem key={result.id + index}>
+      <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW} key={result.id + index}>
         <SearchResult result={result} />
-      </ListItem>
+      </GridTile>
     ))}
     {styles}
-  </List>
+  </Grid>
 );
 
-{
-  /*language=CSS*/
-}
+/*language=CSS*/
 const { className, styles } = css.resolve`
   {  
-      width: 18em;
+      width: 50em;
       height: 40em;
   }
 `;

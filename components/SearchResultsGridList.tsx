@@ -10,19 +10,21 @@ import { SearchResult } from "./SearchResult";
 
 const AMOUNT_OF_COLUMNS_IN_ROw = 2;
 
-export const SearchResultGridList = ({
-  searchResults
-}: {
+interface SearchResultsGridListProps {
   searchResults: GQLSearchResult[];
-}) => (
+}
+
+export const SearchResultsGridList = ({
+  searchResults
+}: SearchResultsGridListProps) => (
   <List className={className}>
     {searchResults.map((result: UnionType<GQLSearchResult>, index) => (
       <ListItem key={result.id + index}>
         <Grid>
-          <GridTile amountPerRow={AMOUNT_OF_COLUMNS_IN_ROw}>
+          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROw}>
             <SearchResult result={result} />
           </GridTile>
-          <GridTile amountPerRow={AMOUNT_OF_COLUMNS_IN_ROw}>
+          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROw}>
             <SearchResult result={result} />
           </GridTile>
         </Grid>

@@ -1,13 +1,12 @@
 import { ReactNode } from "react";
 import { customScrollBarStyles } from "./shared/custom-scroll-bar.styles";
 
-export const List = ({
-  children,
-  className
-}: {
+interface ListProps {
   children: ReactNode;
-  className: string;
-}) => (
+  className?: string;
+}
+
+export const List = ({ children, className }: ListProps) => (
   <div className={className}>
     {children}
 

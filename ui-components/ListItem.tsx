@@ -1,6 +1,10 @@
 import { ReactNode } from "react";
 
-export const ListItem = ({ children }: { children: ReactNode }) => (
+interface ListItemProps {
+  children: ReactNode;
+}
+
+export const ListItem = ({ children }: ListItemProps) => (
   <div>
     {children}
 

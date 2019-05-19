@@ -4,3 +4,4 @@ node_modules
 fragmentTypes.json
 schema.graphql
 gql.model.ts
+server.js

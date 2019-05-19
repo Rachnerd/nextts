@@ -1,14 +1,14 @@
 import * as React from "react";
-import { client } from "./_app";
 import gql from "graphql-tag";
 import { GQLQuery } from "../gql.model";
 import { Title } from "../ui-components/Title";
-import { SearchResultGrid } from "../components/SearchResultGrid";
-import { SearchResultList } from "../components/SearchResultList";
-import { SearchResultGridList } from "../components/SearchResultGridList";
+import { SearchResultsGrid } from "../components/SearchResultsGrid";
+import { SearchResultsList } from "../components/SearchResultsList";
+import { SearchResultsGridList } from "../components/SearchResultsGridList";
 import css from "styled-jsx/css";
 import { Query, QueryResult } from "react-apollo";
 import { Loading } from "../ui-components/Loading";
+import { client } from "../utils/client";
 
 const ITEM_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "500"];
 
@@ -31,22 +31,14 @@ const GET_ITEMS_QUERY = gql`
   }
 `;
 
-const searchStyle = css`
-  .search {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-`;
+interface SearchProps {
+  data: Pick<GQLQuery, "items">;
+}
 
-type ItemsQueryData = Pick<GQLQuery, "items">;
-
-/**
- * The server will wait until the GQL query is completed before responding to the client.
- */
-export class SearchServerSide extends React.PureComponent<{
-  data: ItemsQueryData;
-}> {
+export class SearchServerSide extends React.PureComponent<SearchProps> {
+  /**
+   * The server will wait until the GQL query is completed before responding to the client.
+   */
   static async getInitialProps() {
     return await client.query({
       query: GET_ITEMS_QUERY,
@@ -58,19 +50,19 @@ export class SearchServerSide extends React.PureComponent<{
     const { items } = this.props.data;
     return (
       <>
-        <Title text={`Search results for: ${ITEM_IDS.join(", ")}`} />
+        <Title>{`Search results for: ${ITEM_IDS.join(", ")}`}</Title>
         <div className="search">
           <div>
-            <Title text={`List`} />
-            <SearchResultList searchResults={items} />
+            <Title>List</Title>
+            <SearchResultsList searchResults={items} />
           </div>
           <div>
-            <Title text={`List + Grid`} />
-            <SearchResultGridList searchResults={items} />
+            <Title>List + Grid</Title>
+            <SearchResultsGridList searchResults={items} />
           </div>
           <div>
-            <Title text={`Grid`} />
-            <SearchResultGrid searchResults={items} />
+            <Title>Grid</Title>
+            <SearchResultsGrid searchResults={items} />
           </div>
           <style jsx>{searchStyle}</style>
         </div>
@@ -79,16 +71,14 @@ export class SearchServerSide extends React.PureComponent<{
   }
 }
 
-/**
- * The server will respond immediately and let the client execute the GQL query.
- */
-export class SearchClientSide extends React.PureComponent<{
-  data: ItemsQueryData;
-}> {
+export class SearchClientSide extends React.PureComponent<SearchProps> {
   render() {
     return (
+      /**
+       * The server will respond immediately and let the client execute the GQL query.
+       */
       <Query query={GET_ITEMS_QUERY} fetchPolicy={"no-cache"}>
-        {({ data, loading, error }: QueryResult<ItemsQueryData>) => {
+        {({ data, loading, error }: QueryResult<Pick<GQLQuery, "items">>) => {
           if (error) {
             return <p>Error</p>;
           }
@@ -96,24 +86,24 @@ export class SearchClientSide extends React.PureComponent<{
             loading || !data || !data.items ? <Loading /> : Component;
           return (
             <>
-              <Title text={`Search results for: ${ITEM_IDS.join(", ")}`} />
+              <Title>{`Search results for: ${ITEM_IDS.join(", ")}`}</Title>
               <div className="search">
                 <div>
-                  <Title text={`List`} />
+                  <Title>List</Title>
                   {renderLoadingOrComponent(
-                    <SearchResultList searchResults={data.items} />
+                    <SearchResultsList searchResults={data.items} />
                   )}
                 </div>
                 <div>
-                  <Title text={`List + Grid`} />
+                  <Title>List + Grid</Title>
                   {renderLoadingOrComponent(
-                    <SearchResultGridList searchResults={data.items} />
+                    <SearchResultsGridList searchResults={data.items} />
                   )}
                 </div>
                 <div>
-                  <Title text={`Grid`} />
+                  <Title>Grid</Title>
                   {renderLoadingOrComponent(
-                    <SearchResultGrid searchResults={data.items} />
+                    <SearchResultsGrid searchResults={data.items} />
                   )}
                 </div>
                 <style jsx>{searchStyle}</style>
@@ -125,6 +115,14 @@ export class SearchClientSide extends React.PureComponent<{
     );
   }
 }
+
+const searchStyle = css`
+  .search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+`;
 
 /**
  * SearchServerSide || SearchClientSide

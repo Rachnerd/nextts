@@ -5,9 +5,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import css from "styled-jsx/css";
 
-{
-  /*language=CSS*/
-}
+/*language=CSS*/
 export const global = css.global`
    /* http://meyerweb.com/eric/tools/css/reset/ 
      v2.0 | 20110126
@@ -68,11 +66,8 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <script>window.test = "foo";</script>
-          <style>{`body { margin: 0 } /* custom! */`}</style>
-        </Head>
-        <body className="custom_class">
+        <Head />
+        <body>
           <Main />
           <NextScript />
           <style jsx global>
