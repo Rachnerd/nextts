@@ -1,0 +1,21 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "SearchResult",
+        "possibleTypes": [
+          {
+            "name": "Item"
+          },
+          {
+            "name": "NotFound"
+          },
+          {
+            "name": "Error"
+          }
+        ]
+      }
+    ]
+  }
+}

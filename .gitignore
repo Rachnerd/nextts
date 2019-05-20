@@ -1,9 +1,6 @@
 node_modules
 .idea
 .next
-fragmentTypes.json
-schema.graphql
-gql.model.ts
 *.js
 !next.config.js
 

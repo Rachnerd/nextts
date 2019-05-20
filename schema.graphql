@@ -1,0 +1,19 @@
+type Error {
+  id: String!
+  message: String!
+}
+
+type Item {
+  id: String!
+  name: String!
+}
+
+type NotFound {
+  id: String!
+}
+
+type Query {
+  items(ids: [String!]!): [SearchResult!]!
+}
+
+union SearchResult = Item | NotFound | Error

@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -w server.ts --exec \"npm run build:server && node server.js\"",
     "build": "next build",
     "build:server": "tsc server.ts",
     "prod": "NODE_ENV=production node server.js",
-    "start": "next start",
+    "start": "nodemon -w server.ts --exec \"npm run build:server && node server.js\"",
     "gen": "gql-gen",
     "postinstall": "cd _gql && npm i",
     "start:server": "cd _gql && npm start"
