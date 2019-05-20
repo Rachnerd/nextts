@@ -7,7 +7,7 @@ interface GridProps {
 }
 
 export const Grid = ({ children, className }: GridProps) => (
-  <div className={className}>
+  <div className={"grid " + className}>
     {children}
     {/*language=CSS*/}
     <style jsx>{`

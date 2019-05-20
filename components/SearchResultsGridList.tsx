@@ -8,7 +8,7 @@ import { Grid } from "../ui-components/Grid";
 import { GridTile } from "../ui-components/GridTile";
 import { SearchResult } from "./SearchResult";
 
-const AMOUNT_OF_COLUMNS_IN_ROw = 2;
+const AMOUNT_OF_COLUMNS_IN_ROW = 2;
 
 interface SearchResultsGridListProps {
   searchResults: GQLSearchResult[];
@@ -21,10 +21,10 @@ export const SearchResultsGridList = ({
     {searchResults.map((result: UnionType<GQLSearchResult>, index) => (
       <ListItem key={result.id + index}>
         <Grid>
-          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROw}>
+          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW}>
             <SearchResult result={result} />
           </GridTile>
-          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROw}>
+          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW}>
             <SearchResult result={result} />
           </GridTile>
         </Grid>
@@ -35,11 +35,13 @@ export const SearchResultsGridList = ({
 );
 
 {
-  /*language=CSS*/
+  /*language=SCSS*/
 }
 const { className, styles } = css.resolve`
-  {  
-      width: 18em;
-      height: 40em;
+  $width: 18em;
+  $height: 40em;
+  .list {  
+      width: $width;
+      height: $height;
   }
 `;

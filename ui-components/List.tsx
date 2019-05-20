@@ -7,7 +7,7 @@ interface ListProps {
 }
 
 export const List = ({ children, className }: ListProps) => (
-  <div className={className}>
+  <div className={"list " + className}>
     {children}
 
     {/*language=CSS*/}

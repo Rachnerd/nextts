@@ -23,10 +23,12 @@ export const SearchResultsGrid = ({ searchResults }: SearchResultGridProps) => (
   </Grid>
 );
 
-/*language=CSS*/
+/*language=SCSS*/
 const { className, styles } = css.resolve`
-  {  
-      width: 50em;
-      height: 40em;
+  $width: 50em;
+  $height: 40em;
+  .grid {  
+      width: $width;
+      height: $height;
   }
 `;

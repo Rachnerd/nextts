@@ -6,19 +6,15 @@ interface GridTileProps {
   className?: string;
 }
 
-export const GridTile = ({
-  children,
-  rowSize,
-  className
-}: GridTileProps) => {
+export const GridTile = ({ children, rowSize, className }: GridTileProps) => {
   return (
-    <div className={className}>
+    <div className={"grid-tile " + className}>
       {children}
-      {/*language=CSS*/}
+      {/*language=SCSS*/}
       <style jsx>{`
-        div {
+        .grid-tile {
           padding: 1em;
-          flex-basis: ${100 / rowSize}%;
+          flex-basis: ${100 / rowSize + "%"};
           box-sizing: border-box;
         }
       `}</style>
