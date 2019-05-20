@@ -8,6 +8,6 @@ var handler = routes_1["default"].getRequestHandler(app);
 var express = require("express");
 app.prepare().then(function () {
     var server = express();
-    // server.use(require("compression")());
+    server.use(require("compression")());
     server.use(handler).listen(3000);
 });

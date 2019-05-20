@@ -6,3 +6,7 @@ schema.graphql
 gql.model.ts
 *.js
 !next.config.js
+
+_gql/node_modules
+_gql/dist
+!_gql/webpack.js

@@ -11,6 +11,6 @@ const express = require("express");
 
 app.prepare().then(() => {
   const server = express();
-  // server.use(require("compression")());
+  server.use(require("compression")());
   server.use(handler).listen(3000);
 });

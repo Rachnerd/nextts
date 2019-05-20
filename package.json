@@ -9,7 +9,9 @@
     "build:server": "tsc server.ts",
     "prod": "NODE_ENV=production node server.js",
     "start": "next start",
-    "gen": "gql-gen"
+    "gen": "gql-gen",
+    "postinstall": "cd _gql && npm i",
+    "start:server": "cd _gql && npm start"
   },
   "keywords": [],
   "author": "",
