@@ -1,25 +1,27 @@
 import { ApolloServer, gql, makeExecutableSchema } from "apollo-server";
 import { GQLError, GQLNotFound, GQLSearchResult } from "./models";
-import { GQLItem } from "../../gql.model";
+import { GQLItem } from "./models";
 
 const resolvers = {
   Query: {
-    items: async (
-      _,
-      { ids }
-    ): Promise<GQLSearchResult[]> => {
-      return ids.map(id => parseInt(id) < 5 ? {
-        id,
-        name: `Item ${id}`
-      } as GQLItem : id === "500" ? {
-        id,
-        message: `Something went wrong!`
-      } as GQLError : {
-        id
-      } as GQLNotFound);
+    items: async (_, { ids }): Promise<GQLSearchResult[]> => {
+      return ids.map(id =>
+        parseInt(id) < 5
+          ? ({
+              id,
+              name: `Item ${id}`
+            } as GQLItem)
+          : id === "500"
+          ? ({
+              id,
+              message: `Something went wrong!`
+            } as GQLError)
+          : ({
+              id
+            } as GQLNotFound)
+      );
     }
-
-},
+  },
   SearchResult: {
     __resolveType: obj => {
       if ((obj as GQLItem).name) {

@@ -3,6 +3,16 @@
 npm i
 ```
 
+# Gen code to run client
+```bash
+# Start GQL
+npm run server:start
+
+# Let code gen inspect the running GQL server
+npm run gen
+
+```
+
 # Start
 ```bash
 # next
