@@ -74,11 +74,11 @@ class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          <Main />
-          <NextScript />
           <style jsx global>
             {global}
           </style>
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );
