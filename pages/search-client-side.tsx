@@ -8,6 +8,7 @@ import { SearchResultsGridList } from "../components/SearchResultsGridList";
 import css from "styled-jsx/css";
 import { Query, QueryResult } from "react-apollo";
 import { Loading } from "../ui-components/Loading";
+import { ReactNode } from "react";
 
 const ITEM_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "500"];
 
@@ -41,12 +42,13 @@ export class SearchClientSide extends React.PureComponent<SearchProps> {
        * The server will respond immediately and let the client execute the GQL query.
        */
       <Query query={GET_ITEMS_QUERY} fetchPolicy={"no-cache"}>
-        {({ data, loading, error }: QueryResult<Pick<GQLQuery, "items">>) => {
+        {({ data, loading, error }: QueryResult<SearchProps["data"]>) => {
           if (error) {
             return <p>Error</p>;
           }
-          const renderLoadingOrComponent = Component =>
+          const renderLoadingOrComponent = (Component: ReactNode) =>
             loading || !data || !data.items ? <Loading /> : Component;
+
           return (
             <>
               <Title>{`Search results for: ${ITEM_IDS.join(", ")}`}</Title>
@@ -54,19 +56,19 @@ export class SearchClientSide extends React.PureComponent<SearchProps> {
                 <div>
                   <Title>List</Title>
                   {renderLoadingOrComponent(
-                    <SearchResultsList searchResults={data.items} />
+                    <SearchResultsList searchResults={data!.items} />
                   )}
                 </div>
                 <div>
                   <Title>List + Grid</Title>
                   {renderLoadingOrComponent(
-                    <SearchResultsGridList searchResults={data.items} />
+                    <SearchResultsGridList searchResults={data!.items} />
                   )}
                 </div>
                 <div>
                   <Title>Grid</Title>
                   {renderLoadingOrComponent(
-                    <SearchResultsGrid searchResults={data.items} />
+                    <SearchResultsGrid searchResults={data!.items} />
                   )}
                 </div>
                 <style jsx>{searchStyle}</style>

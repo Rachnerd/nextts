@@ -8,6 +8,7 @@ generates:
   ./gql.model.ts:
     plugins:
     - typescript
+    - typescript-operations
     config:
       avoidOptionals: true
       typesPrefix: GQL

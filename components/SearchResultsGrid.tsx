@@ -1,4 +1,3 @@
-import { UnionType } from "../utils/type.utils";
 import { GQLSearchResult } from "../gql.model";
 import * as React from "react";
 import css from "styled-jsx/css";
@@ -14,7 +13,7 @@ interface SearchResultGridProps {
 
 export const SearchResultsGrid = ({ searchResults }: SearchResultGridProps) => (
   <Grid className={className}>
-    {searchResults.map((result: UnionType<GQLSearchResult>, index) => (
+    {searchResults.map((result, index) => (
       <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW} key={result.id + index}>
         <SearchResult result={result} />
       </GridTile>

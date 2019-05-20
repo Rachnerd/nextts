@@ -1,4 +1,3 @@
-import { UnionType } from "../utils/type.utils";
 import { GQLError, GQLItem, GQLNotFound, GQLSearchResult } from "../gql.model";
 import * as React from "react";
 import { SearchResultItem } from "./SearchResultItem";
@@ -6,7 +5,7 @@ import { SearchResultNotFound } from "./SearchResultNotFound";
 import { SearchResultError } from "./SearchResultError";
 
 interface SearchResultProps {
-  result: UnionType<GQLSearchResult>;
+  result: GQLSearchResult;
 }
 
 export const SearchResult = ({

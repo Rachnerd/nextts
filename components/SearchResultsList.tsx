@@ -1,5 +1,4 @@
 import { List } from "../ui-components/List";
-import { UnionType } from "../utils/type.utils";
 import { GQLSearchResult } from "../gql.model";
 import { ListItem } from "../ui-components/ListItem";
 import * as React from "react";
@@ -14,7 +13,7 @@ export const SearchResultsList = ({
   searchResults
 }: SearchResultsListProps) => (
   <List className={className}>
-    {searchResults.map((result: UnionType<GQLSearchResult>, index) => (
+    {searchResults.map((result, index) => (
       <ListItem key={result.id + index}>
         <SearchResult result={result} />
       </ListItem>

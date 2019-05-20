@@ -36,6 +36,8 @@ export interface GQLItemsQueryArgs {
 // Unions
 // ====================================================
 
+
+
 export type GQLSearchResult = GQLItem | GQLNotFound | GQLError;
 
 import { GraphQLResolveInfo } from "graphql";

@@ -2,7 +2,13 @@
 // Event handlers like onClick can't be added to this file
 
 // ./pages/_document.js
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+  Head,
+  Html,
+  Main,
+  NextDocumentContext,
+  NextScript
+} from "next/document";
 import css from "styled-jsx/css";
 
 /*language=CSS*/
@@ -58,7 +64,7 @@ export const global = css.global`
 `;
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: NextDocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
   }
