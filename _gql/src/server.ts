@@ -11,7 +11,7 @@ const resolvers = {
       return ids.map(id => parseInt(id) < 5 ? {
         id,
         name: `Item ${id}`
-      } as GQLItem : id === 500 ? {
+      } as GQLItem : id === "500" ? {
         id,
         message: `Something went wrong!`
       } as GQLError : {
