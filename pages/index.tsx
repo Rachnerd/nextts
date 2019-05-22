@@ -1,13 +1,14 @@
 import * as React from "react";
+import { Link } from "../routes";
 
 class Home extends React.Component {
   render() {
     return (
       <div>
         <p>Welcome to Next.js! </p>
-        <a href={"./search/server"}>Search server side</a>
-        <br />
-        <a href={"./search/client"}>Search client side</a>
+        <Link route="search">
+          <a>Search</a>
+        </Link>
       </div>
     );
   }

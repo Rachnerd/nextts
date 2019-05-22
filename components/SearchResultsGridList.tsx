@@ -37,10 +37,7 @@ export const SearchResultsGridList = ({
   /*language=SCSS*/
 }
 const { className, styles } = css.resolve`
-  $width: 18em;
-  $height: 40em;
-  .list {  
-      width: $width;
-      height: $height;
+  .list {
+    height: 100%;
   }
 `;

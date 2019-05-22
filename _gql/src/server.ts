@@ -5,6 +5,7 @@ import { GQLItem } from "./models";
 const resolvers = {
   Query: {
     items: async (_, { ids }): Promise<GQLSearchResult[]> => {
+      console.log("Called with ", ids);
       return ids.map(id =>
         parseInt(id) < 5
           ? ({

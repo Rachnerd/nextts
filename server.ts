@@ -1,11 +1,11 @@
 // server.js
 
 import * as next from "next";
-import routes from "./routes";
+import { routeConfig } from "./routes";
 
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 
-const handler = routes.getRequestHandler(app);
+const handler = routeConfig.getRequestHandler(app);
 
 const express = require("express");
 

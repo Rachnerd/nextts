@@ -1,15 +1,9 @@
-import Routes from "next-routes";
-const nextRoutes = require("next-routes");
+const routes = require("next-routes");
 
-/**
- * TS types do not seem to match properly.
- */
-const routes: Routes = nextRoutes();
-
-const config = routes
+export const routeConfig = routes()
   .add("index", "/")
   .add("test")
-  .add("search-server-side", "/search/server")
-  .add("search-client-side", "/search/client");
+  .add("search")
+  .add("search-server-side", "/search/server");
 
-export default config;
+export const Link = routeConfig.Link;
