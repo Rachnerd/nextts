@@ -2,11 +2,9 @@ import * as React from "react";
 import gql from "graphql-tag";
 import { GQLQuery } from "../gql.model";
 import { Title } from "../ui-components/Title";
-import { SearchResultsGrid } from "../components/SearchResultsGrid";
-import { SearchResultsList } from "../components/SearchResultsList";
-import { SearchResultsGridList } from "../components/SearchResultsGridList";
 import css from "styled-jsx/css";
-import { client } from "../utils/client";
+import { client } from "../client/client";
+import { SearchResultsViewer } from "../components/SearchResultsViewer";
 
 const ITEM_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "500"];
 
@@ -39,8 +37,7 @@ export class SearchServerSide extends React.PureComponent<SearchProps> {
    */
   static async getInitialProps() {
     return await client.query({
-      query: GET_ITEMS_QUERY,
-      fetchPolicy: "no-cache"
+      query: GET_ITEMS_QUERY
     });
   }
 
@@ -50,18 +47,7 @@ export class SearchServerSide extends React.PureComponent<SearchProps> {
       <>
         <Title>{`Search results for: ${ITEM_IDS.join(", ")}`}</Title>
         <div className="search">
-          <div>
-            <Title>List</Title>
-            <SearchResultsList searchResults={items} />
-          </div>
-          <div>
-            <Title>List + Grid</Title>
-            <SearchResultsGridList searchResults={items} />
-          </div>
-          <div>
-            <Title>Grid</Title>
-            <SearchResultsGrid searchResults={items} />
-          </div>
+          <SearchResultsViewer searchResults={items} />
           <style jsx>{searchStyle}</style>
         </div>
       </>

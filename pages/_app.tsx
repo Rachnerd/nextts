@@ -1,7 +1,7 @@
 import React from "react";
 import App, { Container, NextAppContext } from "next/app";
 import { ApolloProvider } from "react-apollo";
-import { client } from "../utils/client";
+import { client } from "../client/client";
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }: NextAppContext) {

@@ -8,6 +8,7 @@ const routes: Routes = nextRoutes();
 
 const config = routes
   .add("index", "/")
+  .add("test")
   .add("search-server-side", "/search/server")
   .add("search-client-side", "/search/client");
 
