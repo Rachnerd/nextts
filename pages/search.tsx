@@ -9,7 +9,7 @@ import { client } from "../client/client";
 
 export const GET_ITEMS_QUERY_OPTIONS = {
   query: gql`
-    query Test($ids: [String!]!) {
+    query Items($ids: [String!]!) {
       items(ids: $ids) {
         __typename
         ... on Item {
@@ -43,7 +43,6 @@ export class Search extends React.Component<void> {
     const { query, variables } = GET_ITEMS_QUERY_OPTIONS;
     return (
       <Query
-        ssr={!(process as any).browser}
         query={query}
         variables={variables}
       >
