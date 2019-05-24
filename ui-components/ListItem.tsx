@@ -13,6 +13,7 @@ export const ListItem = ({ children }: ListItemProps) => (
       div {
         padding: 1em;
         border-bottom: 1px solid black;
+        overflow: hidden;
       }
       div:last-child {
         border-bottom: none;

@@ -26,6 +26,12 @@ export const SearchResultsGridList = ({
           <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW}>
             <SearchResult result={result} />
           </GridTile>
+          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW}>
+            <SearchResult result={result} />
+          </GridTile>
+          <GridTile rowSize={AMOUNT_OF_COLUMNS_IN_ROW}>
+            <SearchResult result={result} />
+          </GridTile>
         </Grid>
       </ListItem>
     ))}

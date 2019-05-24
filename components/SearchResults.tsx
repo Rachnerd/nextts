@@ -28,9 +28,7 @@ const GET_VIEW_MODE = gql`
     }
   }
 `;
-export const SearchResults = ({
-  searchResults
-}: SearchResultsViewerProps) => (
+export const SearchResults = ({ searchResults }: SearchResultsViewerProps) => (
   <Query query={GET_VIEW_MODE}>
     {({
       data: {
@@ -40,12 +38,18 @@ export const SearchResults = ({
       <div className={"search-results"}>
         <style jsx>{searchStyle}</style>
         <div>
-          <SearchResultsSelectViewMode viewMode={"List"} current={viewMode} />
+          <SearchResultsSelectViewMode
+            viewMode={"List"}
+            disabled={viewMode === "List"}
+          />
+          <SearchResultsSelectViewMode
+            viewMode={"Grid"}
+            disabled={viewMode === "Grid"}
+          />
           <SearchResultsSelectViewMode
             viewMode={"GridList"}
-            current={viewMode}
+            disabled={viewMode === "GridList"}
           />
-          <SearchResultsSelectViewMode viewMode={"Grid"} current={viewMode} />
         </div>
         <Title>{viewMode}</Title>
         {viewMode === "List" ? (
@@ -66,7 +70,7 @@ const searchStyle = css`
   .search-results {
     display: flex;
     flex-direction: column;
-    width: 50em;
+    width: 40em;
     height: 40em;
     overflow: hidden;
   }

@@ -11,16 +11,16 @@ const SELECT_VIEW_MODE = gql`
 
 interface SearchResultsSelectViewModeProps {
   viewMode: string;
-  current: string;
+  disabled?: boolean;
 }
 
 export const SearchResultsSelectViewMode = ({
   viewMode,
-  current
+  disabled = false
 }: SearchResultsSelectViewModeProps) => (
   <Mutation mutation={SELECT_VIEW_MODE} variables={{ viewMode }}>
     {(selectViewMode: () => ReactNode) => (
-      <button onClick={selectViewMode} disabled={viewMode === current}>
+      <button onClick={selectViewMode} disabled={disabled}>
         {viewMode}
       </button>
     )}

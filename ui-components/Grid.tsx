@@ -16,6 +16,7 @@ export const Grid = ({ children, className }: GridProps) => (
         flex-wrap: wrap;
         overflow-y: auto;
         border: 1px solid black;
+
       }
     `}</style>
     <style jsx>{customScrollBarStyles}</style>

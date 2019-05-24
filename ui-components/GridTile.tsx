@@ -16,6 +16,7 @@ export const GridTile = ({ children, rowSize, className }: GridTileProps) => {
           padding: 1em;
           flex-basis: ${100 / rowSize + "%"};
           box-sizing: border-box;
+          overflow: hidden;
         }
       `}</style>
     </div>

@@ -7,13 +7,14 @@ interface HttpCatProps {
 }
 
 export const HttpCat = ({ status }: HttpCatProps) => (
-  <div>
+  <>
     <img src={`https://http.cat/${status}`} />
     {/*language=CSS*/}
     <style jsx>{`
       img {
         width: 100%;
+        max-height: 100%;
       }
     `}</style>
-  </div>
+  </>
 );
