@@ -4,7 +4,7 @@ import { ApolloClient } from "apollo-client";
 import fetch from "node-fetch";
 import gql from "graphql-tag";
 import { cache } from "./cache";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { createLoona } from "@loona/react";
 
 const typeDefs = gql`
   type SearchResults {
@@ -19,38 +19,17 @@ const typeDefs = gql`
   }
 `;
 
+// Create Loona Link
+export const loona = createLoona(cache);
+
 export const client = new ApolloClient({
   ssrMode: !(process as any).browser,
-  link: createHttpLink({
-    uri: "http://localhost:8080",
-    fetch: fetch as any
-  }),
+  link: loona.concat(
+    createHttpLink({
+      uri: "http://localhost:8080",
+      fetch: fetch as any
+    })
+  ),
   typeDefs,
-  cache,
-  resolvers: {
-    Mutation: {
-      selectSearchResultsViewMode: (
-        _root,
-        { viewMode }: { viewMode: "List" | "Grid" | "GridList" },
-        { cache }: { cache: InMemoryCache }
-      ) => {
-        cache.writeQuery({
-          query: gql`
-            {
-              searchResults @client {
-                viewMode
-              }
-            }
-          `,
-          data: {
-            searchResults: {
-              __typename: "SearchResults",
-              viewMode
-            }
-          }
-        });
-        return true;
-      }
-    }
-  }
+  cache
 });

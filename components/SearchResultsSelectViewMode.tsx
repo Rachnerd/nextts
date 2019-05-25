@@ -1,13 +1,6 @@
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
-import { ReactNode } from "react";
 import * as React from "react";
-
-const SELECT_VIEW_MODE = gql`
-  mutation SelectSearchResultsViewMode($viewMode: String!) {
-    selectSearchResultsViewMode(viewMode: $viewMode) @client
-  }
-`;
+import { Action } from "@loona/react";
+import { SelectViewMode } from "../states/select-view-mode.action";
 
 interface SearchResultsSelectViewModeProps {
   viewMode: string;
@@ -18,11 +11,18 @@ export const SearchResultsSelectViewMode = ({
   viewMode,
   disabled = false
 }: SearchResultsSelectViewModeProps) => (
-  <Mutation mutation={SELECT_VIEW_MODE} variables={{ viewMode }}>
-    {(selectViewMode: () => ReactNode) => (
-      <button onClick={selectViewMode} disabled={disabled}>
+  <Action>
+    {dispatch => (
+      <button
+        onClick={() =>
+          dispatch(new SelectViewMode({
+            viewMode
+          }) as any)
+        }
+        disabled={disabled}
+      >
         {viewMode}
       </button>
     )}
-  </Mutation>
+  </Action>
 );

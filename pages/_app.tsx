@@ -1,7 +1,10 @@
 import React from "react";
 import App, { Container, NextAppContext } from "next/app";
 import { ApolloProvider } from "react-apollo";
-import { client } from "../client/client";
+import { client, loona } from "../client/client";
+import { LoonaProvider } from "@loona/react";
+import { SearchResultsState } from "../states/search-results.state";
+import { TrackingEffects } from "../states/tracking.effects";
 
 /**
  * AppComponent
@@ -34,7 +37,9 @@ class MyApp extends App {
     return (
       <Container>
         <ApolloProvider client={client}>
-          <Component {...pageProps} />
+          <LoonaProvider loona={loona} states={[SearchResultsState, TrackingEffects]}>
+            <Component {...pageProps} />
+          </LoonaProvider>
         </ApolloProvider>
       </Container>
     );

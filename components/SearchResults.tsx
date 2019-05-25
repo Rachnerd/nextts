@@ -9,16 +9,13 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import css from "styled-jsx/css";
 import { SearchResultsSelectViewMode } from "./SearchResultsSelectViewMode";
+import { SearchResultsData } from "../states/search-results.state";
 
 interface SearchResultsViewerProps {
   searchResults: GQLSearchResult[];
 }
 interface SearchResultsViewerData {
-  data: {
-    searchResults: {
-      viewMode: "List" | "Grid" | "GridList";
-    };
-  };
+  data: SearchResultsData;
 }
 
 const GET_VIEW_MODE = gql`

@@ -42,10 +42,7 @@ export class Search extends React.Component<void> {
   render() {
     const { query, variables } = GET_ITEMS_QUERY_OPTIONS;
     return (
-      <Query
-        query={query}
-        variables={variables}
-      >
+      <Query query={query} variables={variables}>
         {({ data, loading, error }: QueryResult<Pick<GQLQuery, "items">>) => (
           <>
             <Title>{`Search results for: ${variables.ids.join(", ")}`}</Title>
