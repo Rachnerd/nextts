@@ -36,7 +36,7 @@ export interface SearchResultsData {
 })
 export class SearchResultsState {
   @mutation(SelectViewMode)
-  addBook(
+  selectViewModeMutation(
     { viewMode }: Partial<SearchResultsData["searchResults"]>,
     { patchQuery }: Context
   ) {
@@ -55,7 +55,7 @@ export class SearchResultsState {
   }
 
   @effect(SelectViewMode)
-  addBookUpdate(
+  selectViewModeEffect(
     action: Action | MutationAsAction,
     { dispatch }: EffectContext
   ) {
