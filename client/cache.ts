@@ -11,12 +11,3 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 export const cache = new InMemoryCache({
   fragmentMatcher
 });
-
-cache.writeData({
-  data: {
-    searchResults: {
-      __typename: "SearchResults",
-      viewMode: "Grid"
-    }
-  }
-});

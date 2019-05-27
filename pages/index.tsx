@@ -6,8 +6,8 @@ class Home extends React.Component {
     return (
       <div>
         <p>Welcome to Next.js! </p>
-        <Link route="search">
-          <a>Search</a>
+        <Link route="page">
+          <a>Page</a>
         </Link>
       </div>
     );

@@ -8,9 +8,7 @@
     "build:server": "tsc server.ts",
     "prod": "NODE_ENV=production node server.js",
     "start": "nodemon -w server.ts --exec \"npm run build:server && node server.js\"",
-    "gen": "gql-gen",
-    "postinstall": "cd _gql && npm i",
-    "start:server": "cd _gql && npm start"
+    "gen": "gql-gen"
   },
   "keywords": [],
   "author": "",

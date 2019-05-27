@@ -1,3 +1,4 @@
+///<reference path="../client/index.d.ts"/>
 import React from "react";
 import App, { Container, NextAppContext } from "next/app";
 import { ApolloProvider } from "react-apollo";
